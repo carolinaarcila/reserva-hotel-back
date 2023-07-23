@@ -21,7 +21,7 @@ public class HotelController {
         this.hotelService = hotelService;
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<HotelDTO> createHotel(@RequestBody HotelDTO hotelDTO){
 
         return new ResponseEntity<>(hotelService.createHotel(hotelDTO), HttpStatus.CREATED);
@@ -29,23 +29,24 @@ public class HotelController {
 
     @GetMapping("{id}")
     public ResponseEntity<HotelDTO> getHotel(@PathVariable Integer id){
-        return new ResponseEntity<>(hotelService.getHotel(id), HttpStatus.FOUND);
+        return new ResponseEntity<>(hotelService.getHotel(id), HttpStatus.OK);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<HotelDTO>> getAllHotel(){
-        return new ResponseEntity<>(hotelService.getAllHotel(), HttpStatus.FOUND);
+        return new ResponseEntity<>(hotelService.getAllHotel(), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public HotelDTO updateHotel(@RequestParam Integer id, @RequestBody HotelDTO hotelDTO) { return null; }
+    public ResponseEntity<HotelDTO> updateHotel(@PathVariable Integer id, @RequestBody HotelDTO hotelDTO){
+        HotelDTO updatedHotel = hotelService.updateHotel(id, hotelDTO);
+        return new ResponseEntity<>(updatedHotel, HttpStatus.ACCEPTED);
+    }
 
     @DeleteMapping("/{id}")
     public  ResponseEntity<DeleteResponse> deleteHotel(@PathVariable Integer id){
-        DeleteResponse deleted =hotelService.deleteHotel(id);
-
-        return new ResponseEntity<>(hotelService.deleteHotel(id), HttpStatus.NO_CONTENT);
-
+        DeleteResponse deleteResponse = hotelService.deleteHotel(id);
+        return new ResponseEntity<>(deleteResponse,HttpStatus.ACCEPTED);
     }
 
 }

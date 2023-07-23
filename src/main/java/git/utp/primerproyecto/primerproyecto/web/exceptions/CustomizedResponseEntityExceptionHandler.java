@@ -1,6 +1,8 @@
 package git.utp.primerproyecto.primerproyecto.web.exceptions;
 
 import git.utp.primerproyecto.primerproyecto.web.exceptions.types.BadRequestException;
+import git.utp.primerproyecto.primerproyecto.web.exceptions.types.NotFoundException;
+import git.utp.primerproyecto.primerproyecto.web.exceptions.types.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +23,28 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
        ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), exception.getMessage(),
                webRequest.getDescription(true), HttpStatus.BAD_REQUEST.getReasonPhrase());
        return new  ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+
+   }
+
+   @ExceptionHandler(NotFoundException.class)
+   public final ResponseEntity<ExceptionResponse> handlerNotFoundException
+           (BadRequestException exception,
+            WebRequest webRequest) {
+      ExceptionResponse exceptionResponse =
+              new ExceptionResponse(new Date(), exception.getMessage(),
+              webRequest.getDescription(true), HttpStatus.NOT_FOUND.getReasonPhrase());
+      return new  ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+
+   }
+
+   @ExceptionHandler(ValidationException.class)
+   public final ResponseEntity<ExceptionResponse> ValidationException
+           (BadRequestException exception,
+            WebRequest webRequest) {
+      ExceptionResponse exceptionResponse =
+              new ExceptionResponse(new Date(), exception.getMessage(),
+                      webRequest.getDescription(true), HttpStatus.NOT_ACCEPTABLE.getReasonPhrase());
+      return new  ResponseEntity<>(exceptionResponse, HttpStatus.NOT_ACCEPTABLE);
 
    }
 }

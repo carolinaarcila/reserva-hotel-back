@@ -11,7 +11,7 @@ public interface HotelService {
 
     HotelDTO getHotel(Integer id);
 
-    HotelDTO updateHotel(HotelDTO hotelDTO);
+    HotelDTO updateHotel(Integer id, HotelDTO hotelDTO);
 
     List<HotelDTO> getAllHotel();
 
