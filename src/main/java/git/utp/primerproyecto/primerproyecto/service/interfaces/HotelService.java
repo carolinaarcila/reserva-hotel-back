@@ -9,12 +9,12 @@ public interface HotelService {
 
     HotelDTO createHotel(HotelDTO hotelDTO);
 
-    HotelDTO getHotel(Integer id);
+    HotelDTO getHotel(Long id);
 
-    HotelDTO updateHotel(Integer id, HotelDTO hotelDTO);
+    HotelDTO updateHotel(Long id, HotelDTO hotelDTO);
 
     List<HotelDTO> getAllHotel();
 
-    DeleteResponse deleteHotel(Integer id);
+    DeleteResponse deleteHotel(Long  id);
 
 }

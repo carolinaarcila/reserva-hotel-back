@@ -12,7 +12,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "users")
+
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class UserEntity {
 
     @EmbeddedId

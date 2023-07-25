@@ -15,8 +15,8 @@ import javax.persistence.*;
 @Table(name = "document_type")
 public class DocumentTypeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String prefix;
     private String description;
 

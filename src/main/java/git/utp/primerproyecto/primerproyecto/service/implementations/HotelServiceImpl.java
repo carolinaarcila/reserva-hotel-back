@@ -55,14 +55,14 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public HotelDTO getHotel(Integer id) {
+    public HotelDTO getHotel(Long id) {
         HotelEntity hotelEntity = hotelRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("El Hotel con el id: " + id + "no se encuentra"));
         return modelMapper.map(hotelEntity, HotelDTO.class);
     }
 
     @Override
-    public HotelDTO updateHotel(Integer id, HotelDTO hotelDTO) {
+    public HotelDTO updateHotel(Long id, HotelDTO hotelDTO) {
         HotelEntity existingHotel = hotelRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("El Hotel con el id: " + id + " no se encuentra"));
 
@@ -72,7 +72,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public DeleteResponse deleteHotel(Integer id) {
+    public DeleteResponse deleteHotel(Long id) {
         try {
             hotelRepository.deleteById(id);
 
