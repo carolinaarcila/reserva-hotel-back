@@ -1,7 +1,6 @@
 package git.utp.primerproyecto.primerproyecto.service.interfaces;
 
 import git.utp.primerproyecto.primerproyecto.model.entities.UserPK;
-import git.utp.primerproyecto.primerproyecto.web.dto.HotelDTO;
 import git.utp.primerproyecto.primerproyecto.web.dto.UserDTO;
 import git.utp.primerproyecto.primerproyecto.web.dto.response.DeleteResponse;
 

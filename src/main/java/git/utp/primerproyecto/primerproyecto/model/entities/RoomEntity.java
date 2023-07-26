@@ -12,18 +12,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-
-@Table(name = "users")
-public class UserEntity {
-
-    @EmbeddedId
-    private UserPK id;
-    private String name;
-    private String phoneNumber;
+@Table (name = "room")
+public class RoomEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
+    private Long id;
     @Column(unique = true)
-    private String email;
-    private String password;
+    private Long roomNumber;
+    private Long price;
+    private  String roomType;
+    private Long beadsNumber;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private  RolEntity rol;
+    private HotelEntity hotel;
 }

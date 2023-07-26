@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +21,7 @@ public class RolEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer id;
     private  String description;
+
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL)
+    private List<UserEntity> users;
 }
