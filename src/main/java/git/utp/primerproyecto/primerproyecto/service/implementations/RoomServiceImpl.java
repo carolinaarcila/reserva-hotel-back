@@ -1,6 +1,8 @@
 package git.utp.primerproyecto.primerproyecto.service.implementations;
 
+import git.utp.primerproyecto.primerproyecto.model.entities.HotelEntity;
 import git.utp.primerproyecto.primerproyecto.model.entities.RoomEntity;
+import git.utp.primerproyecto.primerproyecto.model.repository.HotelRepository;
 import git.utp.primerproyecto.primerproyecto.model.repository.RoomRepository;
 import git.utp.primerproyecto.primerproyecto.service.interfaces.RoomService;
 import git.utp.primerproyecto.primerproyecto.web.dto.RoomDTO;
@@ -20,6 +22,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     private RoomRepository roomRepository;
+
+    @Autowired
+    private HotelRepository hotelRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -58,9 +63,19 @@ public class RoomServiceImpl implements RoomService {
     RoomEntity existingRoom = roomRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("La habitacion con id: " + id + "no se encuentra"));
 
-    modelMapper.map(roomDTO, existingRoom);
-    RoomEntity updateRoomEntity = roomRepository.save(existingRoom);
-    return modelMapper.map(updateRoomEntity, RoomDTO.class);
+        if (!existingRoom.getHotel().getId().equals(roomDTO.getHotelId())) {
+            HotelEntity newHotel = hotelRepository.findById(roomDTO.getHotelId())
+                    .orElseThrow(() -> new NotFoundException("El hotel con el id: " + roomDTO.getHotelId() + " no se encuentra"));
+
+            existingRoom.setHotel(newHotel);
+        }
+        existingRoom.setRoomNumber(roomDTO.getRoomNumber());
+        existingRoom.setPrice(roomDTO.getPrice());
+        existingRoom.setRoomType(roomDTO.getRoomType());
+        existingRoom.setBeadsNumber(roomDTO.getBeadsNumber());
+
+        RoomEntity updatedRoomEntity = roomRepository.save(existingRoom);
+        return modelMapper.map(updatedRoomEntity, RoomDTO.class);
 
     }
 

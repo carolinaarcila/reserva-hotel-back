@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin({"*"})
 @RestController
-@RequestMapping("v1/room")
+@RequestMapping("v1/rooms")
 public class RoomController {
 
     @Autowired
