@@ -1,11 +1,13 @@
 package git.utp.primerproyecto.primerproyecto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,12 +22,14 @@ public class ReservationEntity {
 
     @EmbeddedId
     private ReservationPk id;
-    private Integer holderDni;
-    private Date reservationDate;
-    private Date startDate;
-    private Date endDate;
+    private Long holderDni;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime reservationDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endDate;
     private Integer numberOfRooms;
-
 
 
     @MapsId("idHotel")

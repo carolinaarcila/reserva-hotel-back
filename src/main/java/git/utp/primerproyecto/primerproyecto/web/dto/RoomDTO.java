@@ -19,4 +19,5 @@ public class RoomDTO {
     private String roomType;
     private Long beadsNumber;
     private Long hotelId;
+    private String hotelName;
 }
