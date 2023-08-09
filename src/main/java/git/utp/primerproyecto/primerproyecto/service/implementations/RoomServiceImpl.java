@@ -51,10 +51,7 @@ public class RoomServiceImpl implements RoomService {
         ).collect(Collectors.toList());
     }
 
-    @Override
-    public List<Object[]> getRoomsWhitHotelName() {
-        return roomRepository.getRoomsWhitHotelName();
-    }
+
 
     @Override
     public RoomDTO getRoomById(Long id) {
