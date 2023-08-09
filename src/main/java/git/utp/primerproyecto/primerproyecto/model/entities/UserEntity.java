@@ -26,4 +26,7 @@ public class UserEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private  RolEntity rol;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private ReservationEntity reservation;
 }

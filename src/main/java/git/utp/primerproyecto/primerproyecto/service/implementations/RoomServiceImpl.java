@@ -52,6 +52,11 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
+    public List<Object[]> getRoomsWhitHotelName() {
+        return roomRepository.getRoomsWhitHotelName();
+    }
+
+    @Override
     public RoomDTO getRoomById(Long id) {
         RoomEntity roomEntity = roomRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("La habitacion con el id: " + id + "no se encuentra"));

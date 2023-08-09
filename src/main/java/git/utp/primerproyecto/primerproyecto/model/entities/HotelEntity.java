@@ -40,4 +40,10 @@ public class HotelEntity {
 
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
     private List<RoomEntity> rooms;
+
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<ReservationEntity> reservation;
+
+    @OneToMany(mappedBy = "habilitationCode", cascade = CascadeType.ALL)
+    private List<ReservationEntity> reservations;
 }

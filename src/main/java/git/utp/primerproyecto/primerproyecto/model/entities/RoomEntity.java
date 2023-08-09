@@ -23,7 +23,9 @@ public class RoomEntity {
     private  String roomType;
     private Long beadsNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "hotel_id", updatable = true)
+    @ManyToOne(fetch = FetchType.EAGER)
     private HotelEntity hotel;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private ReservationEntity reservation;
 }

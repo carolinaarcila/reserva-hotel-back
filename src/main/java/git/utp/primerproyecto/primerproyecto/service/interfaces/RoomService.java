@@ -11,6 +11,8 @@ public interface RoomService {
 
     List<RoomDTO> getAllRooms();
 
+    List<Object[]> getRoomsWhitHotelName();
+
     RoomDTO getRoomById(Long id);
 
     RoomDTO updateRoom(Long id, RoomDTO roomDTO);
